@@ -64,11 +64,4 @@ public class UserController
         String jwt = authenticationService.generateToken(existingUser);
         return new Response("Signed in successfully.", jwt);
     }
-
-    @GetMapping
-    public String test(@RequestHeader("Authorization") String bearerToken)
-    {
-        bearerToken = bearerToken.split("Bearer ")[1];
-        return authenticationService.verifyToken(bearerToken);
-    }
 }
