@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalTime;
+
 @Data
 @Document
 @NoArgsConstructor
@@ -28,5 +30,13 @@ public class Alarm
         this.longitude = longitude;
         this.hour = hour;
         this.minutes = minutes;
+    }
+
+    public boolean isBefore(Alarm alarm)
+    {
+        LocalTime time1 = LocalTime.of(this.getHour(), this.getMinutes());
+        LocalTime time2 = LocalTime.of(alarm.getHour(), alarm.getMinutes());
+
+        return time1.isBefore(time2);
     }
 }

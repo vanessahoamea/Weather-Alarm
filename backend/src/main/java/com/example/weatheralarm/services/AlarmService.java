@@ -7,6 +7,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +41,35 @@ public class AlarmService
 
     public List<Alarm> getAllAlarms(String userId)
     {
-        return alarmRepository.findAlarmsByUserId(userId);
+        List<Alarm> sortedAlarms = new ArrayList<>();
+        List<Alarm> alarms = alarmRepository.findAlarmsByUserId(userId);
+
+        try {
+            sortedAlarms.add(alarms.remove(0));
+        } catch(Exception e) {
+            //
+        }
+
+        while(!alarms.isEmpty())
+        {
+            int left = 0;
+            int right = sortedAlarms.size() - 1;
+            Alarm item = alarms.remove(0);
+
+            while(left <= right)
+            {
+                int middle = (left + right) / 2;
+
+                if(item.isBefore(sortedAlarms.get(middle)))
+                    right = middle - 1;
+                else
+                    left = middle + 1;
+            }
+
+            sortedAlarms.add(left, item);
+        }
+
+        return sortedAlarms;
     }
 
     public Alarm deleteAlarm(String id)
