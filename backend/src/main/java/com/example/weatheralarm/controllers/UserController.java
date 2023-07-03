@@ -21,8 +21,8 @@ public class UserController
         this.authenticationService = authenticationService;
     }
 
-    @PostMapping("/signup")
-    public User signup(@RequestBody User user)
+    @PostMapping("/register")
+    public User register(@RequestBody User user)
     {
         User existingUser = this.userService.getUser(user.getEmail());
         if(existingUser != null)
@@ -62,6 +62,7 @@ public class UserController
         }
 
         String jwt = authenticationService.generateToken(existingUser);
+
         return new Response("Signed in successfully.", jwt);
     }
 }
