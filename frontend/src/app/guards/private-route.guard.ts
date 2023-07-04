@@ -19,14 +19,14 @@ export class PrivateRouteGuard implements CanActivate {
     // main page
     if(requiresAuthentication)
     {
-      if(!this.authenticationService.isAuthenticated)
+      if(!this.authenticationService.getAuthStatus())
         this.router.navigate(['login']);
       return true;
     }
     // login, register pages
     else
     {
-      if(this.authenticationService.isAuthenticated)
+      if(this.authenticationService.getAuthStatus())
         this.router.navigate(['main']);
       return true;
     }

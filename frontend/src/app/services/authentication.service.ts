@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
 
-  public isAuthenticated = false;
+  private isAuthenticated = false;
 
   constructor(private apiService: ApiService, private router: Router) {
     this.isAuthenticated = localStorage.getItem('jwt') ? true : false;
@@ -32,6 +32,10 @@ export class AuthenticationService {
     this.isAuthenticated = false;
     localStorage.setItem('jwt', '');
     this.router.navigate(['login']);
+  }
+
+  public getAuthStatus() {
+    return this.isAuthenticated;
   }
   
 }

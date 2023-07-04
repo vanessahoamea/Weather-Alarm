@@ -1,0 +1,15 @@
+<nav class="navbar">
+    <input type="checkbox" id="check">
+    <label for="check" class="menu-button">
+        <i class="fa fa-bars"></i>
+    </label>
+
+    <label class="logo">WeatherAlarm</label>
+    <ul>
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+        <li *ngIf="isAuthenticated()"><a routerLink="/main" routerLinkActive="active">My alarms</a></li>
+        <li *ngIf="isAuthenticated()"><a routerLink="javascript:void(0)" (click)="logout()">Logout</a></li>
+        <li *ngIf="!isAuthenticated()"><a routerLink="/login" routerLinkActive="active">Login</a></li>
+        <li *ngIf="!isAuthenticated()"><a routerLink="/register" routerLinkActive="active">Register</a></li>
+    </ul>
+</nav>
