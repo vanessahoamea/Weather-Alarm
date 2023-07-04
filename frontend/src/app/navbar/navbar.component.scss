@@ -1,6 +1,4 @@
-$blue1: #0082e6;
-$blue2: #1b9bff;
-$gray: #2c3e50;
+@import '../_variables';
 
 .navbar {
     background-color: $blue1;
@@ -9,41 +7,41 @@ $gray: #2c3e50;
     font-weight: bold;
     color: white;
 
-    & .logo {
+    .logo {
         font-size: 35px;
         line-height: 80px;
         padding: 0 50px;
     }
 
-    & ul {
+    ul {
         float: right;
         margin-right: 20px;
 
-        & li {
+        li {
             display: inline-block;
             line-height: 80px;
             margin: 0 10px;
 
-            & a {
+            a {
                 color: white;
                 font-size: 15px;
                 padding: 5px 15px;
                 border-radius: 5px;
                 text-transform: uppercase;
-            }
 
-            & a.active, & a:hover {
-                background: $blue2;
-                transition: 0.5s;
+                &.active, &:hover {
+                    background: $blue2;
+                    transition: 0.5s;
+                }
             }
         }
     }
 
-    & #check, & .menu-button {
+    #check, .menu-button {
         display: none;
     }
 
-    & .menu-button {
+    .menu-button {
         font-size: 30px;
         float: right;
         line-height: 80px;
@@ -54,11 +52,11 @@ $gray: #2c3e50;
 
 @media screen and (max-width: 850px) {
     .navbar {
-        & .menu-button {
+        .menu-button {
             display: block;
         }
 
-        & ul {
+        ul {
             display: none;
             position: fixed;
             top: 80px;
@@ -67,21 +65,21 @@ $gray: #2c3e50;
             background-color: $gray;
             text-align: center;
 
-            & li {
+            li {
                 display: block;
 
-                & a {
+                a {
                     font-size: 20px;
-                }
 
-                & a.active, a:hover {
-                    background: none;
-                    color: $blue1;
+                    &.active, &:hover {
+                        background: none;
+                        color: $blue1;
+                    }
                 }
             }
         }
 
-        & #check:checked ~ ul {
+        #check:checked ~ ul {
             display: block;
         }
     }

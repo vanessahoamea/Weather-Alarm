@@ -1,1 +1,5 @@
-<p>login works!</p>
+<h1 class="login-text">Sign in to your account</h1>
+
+<app-form [buttonText]="'Sign in'" (buttonClick)="login($event[0], $event[1])"></app-form>
+
+<p class="bottom-text">Don't have an account? <a routerLink="/register">Register now.</a></p>

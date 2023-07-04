@@ -1,0 +1,36 @@
+@import '../_variables';
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 70vw;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid $gray;
+    border-radius: 5px;
+
+    input {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid $gray;
+        border-radius: 5px;
+        margin-top: 5px;
+        outline: none;
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 10px;
+        margin: 0 auto;
+        background-color: $blue2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $blue1;
+        }
+    }
+}

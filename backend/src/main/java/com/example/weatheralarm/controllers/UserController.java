@@ -30,6 +30,11 @@ public class UserController
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
 
+        if(user.getEmail().isEmpty() || user.getPassword().isEmpty())
+        {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
         String hashedPassword;
         try {
             hashedPassword = authenticationService.hashPassword(user.getPassword());

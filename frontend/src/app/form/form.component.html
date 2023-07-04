@@ -1,0 +1,9 @@
+<form [formGroup]="authForm" class="auth-form">
+    <label for="email">Enter a valid e-mail address</label>
+    <input type="text" id="email" formControlName="email">
+
+    <label for="email">Enter a password</label>
+    <input type="password" id="password" formControlName="password">
+
+    <button type="button" (click)="buttonAction()">{{ buttonText }}</button>
+</form>

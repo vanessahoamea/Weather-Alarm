@@ -1,1 +1,5 @@
-<p>register works!</p>
+<h1 class="register-text">Create an account</h1>
+
+<app-form [buttonText]="'Sign up'" (buttonClick)="register($event[0], $event[1])"></app-form>
+
+<p class="bottom-text">Already have an account? <a routerLink="/login">Log in.</a></p>

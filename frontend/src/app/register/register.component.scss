@@ -1,0 +1,10 @@
+@import '../_variables';
+
+.register-text, .bottom-text {
+    text-align: center;
+}
+
+.bottom-text a {
+    font-weight: bold;
+    color: $blue1;
+}
