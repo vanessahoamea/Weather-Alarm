@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  constructor() { }
+
+  ngOnInit() {
+    Notification.requestPermission().then((_) => { });
+  }
+
 }

@@ -1,1 +1,24 @@
-<p>main works!</p>
+<h1 class="alarms-text">All alarms</h1>
+<button class="add-button" (click)="addAlarm()"><i class="fa-solid fa-plus"></i> Add new</button>
+
+<div class="alarms-list" *ngIf="getAlarms().length > 0">
+    <div class="alarm" *ngFor="let alarm of getAlarms()">
+        <div class="alarm-time">
+            <img src="../../assets/alarm-clock.png" alt="Alarm clock">
+            <p>{{ alarm.hour | leadingZero }}:{{ alarm.minutes | leadingZero }}</p>
+        </div>
+        <div class="alarm-details">
+            <p>{{ alarm.title }}</p>
+            <p>@ {{ alarm.latitude }}, {{ alarm.longitude }}</p>
+        </div>
+        <div class="alarm-buttons">
+            <button (click)="editAlarm(alarm.id)"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+            <button (click)="deleteAlarm(alarm.id)"><i class="fa-solid fa-trash"></i> Delete</button>
+        </div>
+    </div>
+</div>
+
+<div class="alarms-list" *ngIf="getAlarms().length == 0">
+    <p>You don't have any alarms yet.</p>
+    <p>Try creating one.</p>
+</div>

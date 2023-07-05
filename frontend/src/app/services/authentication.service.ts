@@ -15,6 +15,10 @@ export class AuthenticationService {
     this.isAuthenticated = localStorage.getItem('jwt') ? true : false;
   }
 
+  public getAuthStatus() {
+    return this.isAuthenticated;
+  }
+
   public register(email: string, password: string): Observable<string> {
     return this.apiService.register(email, password).pipe(
       map((user: User) => {
@@ -63,10 +67,6 @@ export class AuthenticationService {
     this.isAuthenticated = false;
     localStorage.setItem('jwt', '');
     this.router.navigate(['login']);
-  }
-
-  public getAuthStatus() {
-    return this.isAuthenticated;
   }
   
 }

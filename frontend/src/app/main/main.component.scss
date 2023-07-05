@@ -1,0 +1,67 @@
+@import '../variables';
+
+.alarms-text, .alarms-list {
+    text-align: center;
+}
+
+.add-button, .alarm-buttons button {
+    margin: 2px;
+    padding: 5px;
+    background-color: $blue2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $blue1;
+    }
+}
+
+.add-button {
+    display: block;
+    margin: 5px auto;
+    padding: 10px;
+    font-size: 1em;
+}
+
+.alarms-list {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.alarm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid $gray;
+    border-radius: 15px;
+    width: 500px;
+    padding: 5px 20px;
+
+    &-time {
+        img {
+            width: 5em;
+        }
+
+        p {
+            font-size: 1.5em;
+        }
+    }
+
+    &-details {
+        p:first-child {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+
+    &-buttons {
+        display: flex;
+        flex-direction: column;
+    }
+}

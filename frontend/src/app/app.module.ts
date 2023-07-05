@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { FormComponent } from './form/form.component';
+import { LeadingZeroPipe } from './pipes/leading-zero.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormComponent } from './form/form.component';
     RegisterComponent,
     NavbarComponent,
     HomeComponent,
-    FormComponent
+    FormComponent,
+    LeadingZeroPipe
   ],
   imports: [
     BrowserModule,
