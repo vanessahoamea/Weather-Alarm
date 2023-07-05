@@ -78,6 +78,11 @@ public class AlarmService
                 .orElse(null);
     }
 
+    public Alarm saveAlarm(Alarm alarm)
+    {
+        return alarmRepository.save(alarm);
+    }
+
     public Weather getWeatherData(float latitude, float longitude)
     {
         RestTemplate restTemplate = new RestTemplate();

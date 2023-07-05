@@ -32,6 +32,15 @@ public class Alarm
         this.minutes = minutes;
     }
 
+    public void copy(Alarm alarm)
+    {
+        this.title = alarm.title;
+        this.latitude = alarm.latitude;
+        this.longitude = alarm.longitude;
+        this.hour = alarm.hour;
+        this.minutes = alarm.minutes;
+    }
+
     public boolean isBefore(Alarm alarm)
     {
         LocalTime time1 = LocalTime.of(this.getHour(), this.getMinutes());

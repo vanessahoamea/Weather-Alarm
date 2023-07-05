@@ -57,6 +57,22 @@ public class AlarmController
         return alarmService.getAlarm(id);
     }
 
+    @PutMapping(path = "/{id}")
+    public Alarm updateAlarm(@RequestBody Alarm alarm, @PathVariable String id, @RequestHeader("Authorization") String bearerToken)
+    {
+        checkBearerToken(bearerToken);
+
+        Alarm existingAlarm = alarmService.getAlarm(id);
+        if(existingAlarm == null)
+        {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        existingAlarm.copy(alarm);
+
+        return alarmService.saveAlarm(existingAlarm);
+    }
+
     @DeleteMapping(path = "/{id}")
     public Alarm deleteAlarm(@PathVariable String id, @RequestHeader("Authorization") String bearerToken)
     {
