@@ -23,8 +23,39 @@ export class ApiService {
     });
   }
 
+  public createAlarm(title: string, lat: number, lon: number, hour: number, minutes: number, bearerToken: string) {
+    return this.http.post<Alarm | Response>('/api/alarms', {
+      'title': title,
+      'latitude': lat,
+      'longitude': lon,
+      'hour': hour,
+      'minutes': minutes,
+    }, {
+      'headers': { 'Authorization': `Bearer ${bearerToken}` }
+    });
+  }
+
   public getAlarms(bearerToken: string) {
     return this.http.get<Array<Alarm>>('/api/alarms', {
+      'headers': { 'Authorization': `Bearer ${bearerToken}` }
+    });
+  }
+
+  public editAlarm(id: string, title: string, lat: number, lon: number, hour: number, minutes: number, bearerToken: string) {
+    return this.http.put<Alarm>(`/api/alarms/${id}`, {
+      'title': title,
+      'latitude': lat,
+      'longitude': lon,
+      'hour': hour,
+      'minutes': minutes
+    }, {
+      'headers': { 'Authorization': `Bearer ${bearerToken}` }
+    });
+  }
+
+  public deleteAlarm(id: string, bearerToken: string)
+  {
+    return this.http.delete<Alarm>(`/api/alarms/${id}`, {
       'headers': { 'Authorization': `Bearer ${bearerToken}` }
     });
   }

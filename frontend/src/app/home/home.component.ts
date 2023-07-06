@@ -10,7 +10,7 @@ export class HomeComponent {
   constructor() { }
 
   ngOnInit() {
-    Notification.requestPermission().then((_) => { });
+    navigator.geolocation.getCurrentPosition(() => { });
   }
 
 }

@@ -1,7 +1,7 @@
 <h1 class="alarms-text">All alarms</h1>
-<button class="add-button" (click)="addAlarm()"><i class="fa-solid fa-plus"></i> Add new</button>
+<button class="add-button" (click)="showModal('alarm-form')"><i class="fa-solid fa-plus"></i> Add new</button>
 
-<div class="alarms-list" *ngIf="getAlarms().length > 0">
+<div class="alarms-list">
     <div class="alarm" *ngFor="let alarm of getAlarms()">
         <div class="alarm-time">
             <img src="../../assets/alarm-clock.png" alt="Alarm clock">
@@ -9,16 +9,35 @@
         </div>
         <div class="alarm-details">
             <p>{{ alarm.title }}</p>
-            <p>@ {{ alarm.latitude }}, {{ alarm.longitude }}</p>
+            <p>weather @ {{ alarm.latitude | number : '1.2-2' }}, {{ alarm.longitude | number : '1.2-2' }}</p>
         </div>
         <div class="alarm-buttons">
-            <button (click)="editAlarm(alarm.id)"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
-            <button (click)="deleteAlarm(alarm.id)"><i class="fa-solid fa-trash"></i> Delete</button>
+            <button (click)="showModal('alarm-form', alarm.id, alarm.title, alarm.hour, alarm.minutes)">Edit</button>
+            <button (click)="showModal('delete-text', alarm.id)">Delete</button>
         </div>
     </div>
+
+    <p *ngIf="getAlarms().length == 0">
+        You don't have any alarms yet.<br/>
+        Try creating one.
+    </p>
 </div>
 
-<div class="alarms-list" *ngIf="getAlarms().length == 0">
-    <p>You don't have any alarms yet.</p>
-    <p>Try creating one.</p>
+<div id="modal">
+    <div id="modal-content">
+        <form id="alarm-form">
+            <label for="title">Title</label>
+            <input type="text" id="title">
+
+            <label for="time">Time</label>
+            <input type="time" id="time">
+        </form>
+
+        <p id="delete-text">Are you sure you want to delete this alarm?</p>
+        
+        <div id="modal-buttons">
+            <button class="main-button" (click)="confirm()">OK</button>
+            <button class="main-button" (click)="closeModal()">Cancel</button>
+        </div>
+    </div>
 </div>

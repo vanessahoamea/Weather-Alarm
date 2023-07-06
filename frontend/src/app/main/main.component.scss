@@ -1,4 +1,4 @@
-@import '../variables';
+@import '../variables', '../modal';
 
 .alarms-text, .alarms-list {
     text-align: center;
@@ -63,5 +63,22 @@
     &-buttons {
         display: flex;
         flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .alarm {
+        width: 350px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .alarm {
+        width: 250px;
+        flex-direction: column;
+
+        &-buttons {
+            flex-direction: row;
+        }
     }
 }
