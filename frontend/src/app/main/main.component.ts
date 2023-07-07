@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Alarm } from '../models/app.model';
+import { Alarm, Weather } from '../models/app.model';
 import { AlarmService } from '../services/alarm.service';
 
 @Component({
@@ -25,19 +25,38 @@ export class MainComponent {
       next: (alarms) => this.alarms = alarms
     });
 
-    // checking if an alarm can trigger every one minute
+    // checking if an alarm can trigger every one second
     setInterval(() => {
-      const today = new Date();
+      const now = new Date();
 
       this.alarms.forEach(alarm => {
-        if(today.getHours() == alarm.hour && today.getMinutes() == alarm.minutes)
+        if(now.getHours() == alarm.hour && now.getMinutes() == alarm.minutes && now.getSeconds() == 0)
         {
           this.ringtone.play();
           this.ringtone.loop = true;
 
+          this.alarmService.getWeather(alarm.id, this.bearerToken)
+          .subscribe({
+            next: (weather: Weather) => {
+              const data = `Current weather information for ${weather.location}, ${weather.country}: ` + 
+              `${weather.condition}, with a temperature of ${weather.temperature}°C. ` +
+              `Wind is blowing with a speed of ${weather.wind} km/h, with ` +
+              `${weather.humidity}% humidity, and a UV index of ${weather.uvIndex}.`;
+
+              alarm.weather = data;
+              
+              if(Notification.permission == 'granted')
+                new Notification(`Weather Alarm: ${alarm.title}`, {
+                  body: data,
+                  icon: weather.iconUrl
+                });
+            },
+            error: (error: string) => alert(error)
+          });
+
           setTimeout(() => {
             this.ringtone.pause();
-          }, 15 * 1000);
+          }, 17 * 1000);
         }
       });
     }, 1000);

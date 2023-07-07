@@ -9,7 +9,8 @@
         </div>
         <div class="alarm-details">
             <p>{{ alarm.title }}</p>
-            <p>weather @ {{ alarm.latitude | number : '1.2-2' }}, {{ alarm.longitude | number : '1.2-2' }}</p>
+            <p *ngIf="!alarm.weather">weather @ {{ alarm.latitude | number : '1.2-2' }}, {{ alarm.longitude | number : '1.2-2' }}</p>
+            <p *ngIf="alarm.weather">{{ alarm.weather }}</p>
         </div>
         <div class="alarm-buttons">
             <button (click)="showModal('alarm-form', alarm.id, alarm.title, alarm.hour, alarm.minutes)">Edit</button>
@@ -36,8 +37,8 @@
         <p id="delete-text">Are you sure you want to delete this alarm?</p>
         
         <div id="modal-buttons">
-            <button class="main-button" (click)="confirm()">OK</button>
-            <button class="main-button" (click)="closeModal()">Cancel</button>
+            <button class="modal-button" (click)="confirm()">OK</button>
+            <button class="modal-button" (click)="closeModal()">Cancel</button>
         </div>
     </div>
 </div>

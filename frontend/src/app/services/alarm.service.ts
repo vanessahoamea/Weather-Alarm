@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable, catchError, map, throwError } from 'rxjs';
-import { Alarm, Response } from '../models/app.model';
+import { Alarm, Response, Weather } from '../models/app.model';
 
 @Injectable({
   providedIn: 'root'
@@ -58,7 +58,7 @@ export class AlarmService {
     );
   }
 
-  public deleteAlarm(id: string, bearerToken: string) {
+  public deleteAlarm(id: string, bearerToken: string): Observable<string> {
     return this.apiService.deleteAlarm(id, bearerToken).pipe(
       map((alarm: Alarm) => {
         alert(`Successfully deleted alarm "${alarm.title}".`);
@@ -66,6 +66,22 @@ export class AlarmService {
         return '';
       }),
       catchError((error) => {        
+        switch (error.status) {
+          case 401:
+            return throwError(() => new Error('You don\'t have access to this resource.'));
+          case 404:
+            return throwError(() => new Error('This alarm doesn\'t exist.'));
+          default:
+            return throwError(() => new Error('Something went wrong. Try again later.'));
+        }
+      })
+    );
+  }
+
+  public getWeather(id: string, bearerToken: string): Observable<Weather> {
+    return this.apiService.getWeather(id, bearerToken).pipe(
+      map((weather: Weather) => weather),
+      catchError((error) => {
         switch (error.status) {
           case 401:
             return throwError(() => new Error('You don\'t have access to this resource.'));

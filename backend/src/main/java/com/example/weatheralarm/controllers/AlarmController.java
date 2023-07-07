@@ -90,7 +90,6 @@ public class AlarmController
     @GetMapping(path = "/{id}/weather")
     public Weather getAlarmWeather(@PathVariable String id, @RequestHeader("Authorization") String bearerToken)
     {
-        System.out.println(id);
         checkBearerToken(bearerToken);
 
         Alarm alarm = alarmService.getAlarm(id);

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User, Response, Alarm } from '../models/app.model';
+import { User, Response, Alarm, Weather } from '../models/app.model';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +56,12 @@ export class ApiService {
   public deleteAlarm(id: string, bearerToken: string)
   {
     return this.http.delete<Alarm>(`/api/alarms/${id}`, {
+      'headers': { 'Authorization': `Bearer ${bearerToken}` }
+    });
+  }
+
+  public getWeather(id: string, bearerToken: string) {
+    return this.http.get<Weather>(`/api/alarms/${id}/weather`, {
       'headers': { 'Authorization': `Bearer ${bearerToken}` }
     });
   }

@@ -12,6 +12,18 @@ export interface Alarm {
     longitude: number;
     hour: number;
     minutes: number;
+    weather?: string;
+}
+
+export interface Weather {
+    location: string;
+    country: string;
+    temperature: number;
+    condition: string;
+    iconUrl: string;
+    wind: number;
+    humidity: number;
+    uvIndex: number;
 }
 
 export interface Response {

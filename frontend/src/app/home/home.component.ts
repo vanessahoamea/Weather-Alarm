@@ -10,6 +10,10 @@ export class HomeComponent {
   constructor() { }
 
   ngOnInit() {
+    // requesting permission to send notifications
+    Notification.requestPermission().then(() => { });
+
+    // requesting permission to access the user's location
     navigator.geolocation.getCurrentPosition(() => { });
   }
 
